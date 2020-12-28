@@ -1,6 +1,6 @@
 package com.github.howwrite.whiterose.starter;
 
-import cn.github.howwrite.whiterose.action.FourWheel;
+import cn.github.howwrite.whiterose.action.TwoWheel;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
@@ -11,16 +11,22 @@ import org.springframework.web.bind.annotation.RestController;
  */
 @RestController
 public class TestController {
-    private final FourWheel fourWheel = new FourWheel(29, 25, 28, 27, 24, 23);
+    private final TwoWheel twoWheel = new TwoWheel(29, 28, 27, 25, 24, 23);
 
     @GetMapping("/test")
     public boolean action(@RequestParam String command) {
         if ("advance".equalsIgnoreCase(command)) {
-            return fourWheel.advance();
+            return twoWheel.advance();
         } else if ("stop".equalsIgnoreCase(command)) {
-            return fourWheel.stop();
+            return twoWheel.stop();
         } else if ("shutdown".equalsIgnoreCase(command)) {
-            return fourWheel.shutdown();
+            return twoWheel.shutdown();
+        } else if ("back".equalsIgnoreCase(command)) {
+            return twoWheel.back();
+        } else if ("left".equalsIgnoreCase(command)) {
+            return twoWheel.turnLeft();
+        } else if ("right".equalsIgnoreCase(command)) {
+            return twoWheel.turnRight();
         }
         return false;
     }
